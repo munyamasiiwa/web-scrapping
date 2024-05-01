@@ -1,0 +1,3 @@
+streamlit
+somepackage; python_version >= '3.6'  # Correct
+googletrans==4.0.0-rc1
