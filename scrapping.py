@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from bs4 import BeautifulSoup
-from googletrans import Translator, LANGUAGES
+from googletrans import Translator
 
 # Initialize the translator
 translator = Translator()
@@ -37,17 +37,19 @@ if url_input:
     if soup:
         # Displaying images
         st.header("Images:")
+        shown_images = set()  # To track images that have been shown
         for img in soup.find_all('img'):
             img_url = img.get('src')
-            if img_url:
+            if img_url and img_url not in shown_images:
+                shown_images.add(img_url)
                 st.image(img_url, caption=img_url)
 
         # Displaying header tags and paragraphs
         headers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
         for header in headers:
             for tag in soup.find_all(header):
-                header_text = translate_text(tag.text.strip())
-                st.subheader(f"{tag.name.upper()}: {header_text}")
+                translated_header = translate_text(tag.text.strip())
+                st.subheader(translated_header)
                 p_after = tag.find_next_sibling('p')
                 if p_after:
                     translated_p = translate_text(p_after.text.strip())
