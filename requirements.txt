@@ -1,11 +1,11 @@
+bs4
 streamlit
 somepackage; python_version >= '3.6'  
 googletrans==4.0.0-rc1
-bs4
-fpdf2 python-docx openpyxl pandas
+fpdf2 
+python-docx 
+openpyxl
+pandas
 requests
 BeautifulSoup
-fpdf 
 FPDF
-pandas 
-docx 
